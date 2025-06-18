@@ -10,7 +10,8 @@ export interface Column {
   tasks: Task[];
 }
 
-// 1.3 Также создадим интерфейс и для задачи, у которой будет также уникальный ID, название задачи "title" и дата создания "createdAt"
+// 1.3 Также создадим интерфейс и для задачи, у которой будет также уникальный ID, название задачи "title" и дата создания "createdAt".
+// Go to [components\TrelloBoard.vue]
 export interface Task {
   id: ID;
   title: string;

@@ -1,6 +1,9 @@
+<script setup lang="ts">
+import TrelloBoard from './components/TrelloBoard.vue';
+</script>
+
 <template>
   <div>
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome />
+    <TrelloBoard />
   </div>
 </template>

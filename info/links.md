@@ -8,4 +8,7 @@
 - [Nuxt VueUse Module](https://www.npmjs.com/package/@vueuse/nuxt)
 - [Nuxt Docs: nuxt.config.ts](https://nuxt.com/docs/guide/directory-structure/nuxt.config)
 - [TypeScript Docs: Object Types](https://www.typescriptlang.org/docs/handbook/2/objects.html)
+- [Vue.js Docs: Typing Refs](https://vuejs.org/guide/typescript/composition-api.html#typing-ref)
+- [Tips and Gotchas for Using key with v-for in Vue.js 3](https://vueschool.io/articles/vuejs-tutorials/tips-and-gotchas-for-using-key-with-v-for-in-vue-js-3/)
+- [Just-In-Time: The Next Generation of Tailwind CSS](https://tailwindcss.com/blog/just-in-time-the-next-generation-of-tailwind-css)
 - []()
