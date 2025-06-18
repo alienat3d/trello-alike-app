@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import type { Column } from '~/types';
+import type { Column } from "~/types";
 // 2.1.0 Также необходимо добавить тип для колонки, который мы заранее подготовили.
-import { nanoid } from 'nanoid';
+import { nanoid } from "nanoid";
+import TrelloBoardTask from "./TrelloBoardTask.vue";
 
 // * 2.0 Теперь приступим к созданию какого-то рыбного контента на странице, чтобы стилизовать приложение. И раз уж мы во Vue, то сделаем это при помощи его мощностей. Создадим реактивный массив для колонок.
 // ? Нам не приходится импортировать "ref", т.к. мы работаем в Nuxt и это один из его приятных бонусов.
@@ -9,39 +10,53 @@ import { nanoid } from 'nanoid';
 // 2.1.2 Далее внутри в "{}" мы опишем, что именно будет содержать в себе массива, это: id, сгенерированный автоматически при помощи библиотеки "nanoid", заголовок и массив с задачами, который также содержит уникальный id, заголовок и время создания задачи.
 const columns = ref<Column[]>([
   {
-    title: 'Backlog',
+    title: "Backlog",
     id: nanoid(),
     tasks: [
       {
-        title: 'Create a landing page',
+        title: "Create a landing page",
         createdAt: new Date(),
         id: nanoid(),
       },
       {
-        title: 'Develop a new feature',
+        title: "Develop a new feature",
         createdAt: new Date(),
         id: nanoid(),
       },
       {
-        title: 'Fix the page navigation bug',
+        title: "Fix the page navigation bug",
         createdAt: new Date(),
         id: nanoid(),
       },
     ],
   },
-  { title: 'Selected for Dev', id: nanoid(), tasks: [] },
-  { title: 'In Progress', id: nanoid(), tasks: [] },
-  { title: 'QA', id: nanoid(), tasks: [] },
-  { title: 'Complete', id: nanoid(), tasks: [] },
+  { title: "Selected for Dev", id: nanoid(), tasks: [] },
+  { title: "In Progress", id: nanoid(), tasks: [] },
+  { title: "QA", id: nanoid(), tasks: [] },
+  { title: "Complete", id: nanoid(), tasks: [] },
 ]);
 </script>
-
 <!-- 2.1.3 После того, как структура определена можно заняться генерацией вёрстки с помощью цикла в директиве "v-for". Мы заполним содержимое тегов из свойств объектов описанных выше в массиве данных. -->
 <template>
-  <div>
-    <div v-for="column in columns" :key="column.id">
-      <header>{{ column.title }}</header>
-      <p v-for="task in column.tasks" :key="task.id">{{ task.title }}</p>
+  <div class="flex items-start gap-4 overflow-x-auto">
+    <!-- 2.2 Также начнём стилизацию с помощью функциональных классов TailwindCSS. И добавим класс "column", но уже не для стилизации, а для индикации элемента колонки с задачами. -->
+    <!-- Go to [components\TrelloBoardTask.vue] -->
+    <div
+      v-for="column in columns"
+      :key="column.id"
+      class="column min-w-[250px] rounded bg-gray-200 p-5"
+    >
+      <header class="mb-4 font-bold">{{ column.title }}</header>
+      <!-- 3.3 Теперь мы добавим комп. TrelloBoardTask сюда, чтобы отображать задачи. Он будет принимать "task" и нам также надо добавить к нему цикл, чтобы распечатать их всех на страницу. -->
+      <!-- Go to [components\TrelloBoardTask.vue] -->
+      <TrelloBoardTask
+        :task="task"
+        v-for="task in column.tasks"
+        :key="task.id"
+      />
+      <!-- <p v-for="task in column.tasks" :key="task.id">{{ task.title }}</p> -->
+      <!-- 3.5 Нам также необходимо добавить кнопку добавления новых задач. -->
+      <footer><button class="text-gray-500">+ Add a Card</button></footer>
     </div>
   </div>
 </template>
