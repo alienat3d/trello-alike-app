@@ -38,7 +38,7 @@ const columns = ref<Column[]>([
 </script>
 <!-- 2.1.3 После того, как структура определена можно заняться генерацией вёрстки с помощью цикла в директиве "v-for". Мы заполним содержимое тегов из свойств объектов описанных выше в массиве данных. -->
 <template>
-  <div class="flex items-start gap-4 overflow-x-auto">
+  <div class="flex items-start gap-4 overflow-x-auto pb-10">
     <!-- 2.2 Также начнём стилизацию с помощью функциональных классов TailwindCSS. И добавим класс "column", но уже не для стилизации, а для индикации элемента колонки с задачами. -->
     <!-- Go to [components\TrelloBoardTask.vue] -->
     <div
