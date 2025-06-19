@@ -12,4 +12,5 @@
 - [Tips and Gotchas for Using key with v-for in Vue.js 3](https://vueschool.io/articles/vuejs-tutorials/tips-and-gotchas-for-using-key-with-v-for-in-vue-js-3/)
 - [Just-In-Time: The Next Generation of Tailwind CSS](https://tailwindcss.com/blog/just-in-time-the-next-generation-of-tailwind-css)
 - [Making the component client side only](https://nuxt.com/docs/api/components/client-only)
+- [Sortable.js: Group Option](https://github.com/SortableJS/Sortable#group-option)
 - []()
