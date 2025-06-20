@@ -3,6 +3,7 @@ import type { Column, Task } from "~/types";
 import { nanoid } from "nanoid";
 import draggable from "vuedraggable";
 import TrelloBoardTask from "./TrelloBoardTask.vue";
+import NewTask from "./NewTask.vue";
 
 const columns = ref<Column[]>([
   {
@@ -71,7 +72,11 @@ const isAltPressed = useKeyModifier("Alt");
               </div>
             </template>
           </draggable>
-          <footer><button class="text-gray-500">+ Add a Card</button></footer>
+          <!-- 9.5 Осталось только заменить кнопку новым компонентом "NewTask". А также, чтобы добавить новую задачу в текущий список задач нам нужен слушатель кастомного события "add", который применит метод "push" на текущий список задач и получит объект из события ($event). -->
+          <footer>
+            <NewTask @add="column.tasks.push($event)" />
+            <!-- <button class="text-gray-500">+ Add a Card</button> -->
+          </footer>
         </div>
       </template>
     </draggable>
@@ -81,6 +86,7 @@ const isAltPressed = useKeyModifier("Alt");
 <!-- * 8.0 В оригинальном «Trello» при перетаскивании элементы задач наклоняются в одну сторону, мы можем сделать тоже самое. «SoratableJS» даёт нам три класса для разных состояний: "sortable-chosen" (когда мы только начали перетаскивать элемент кликнув на нём и удерживая кнопку мыши.), "sortable-drag" (когда мы начали движение удерживая элемент) и "sortable-ghost" (применяется к дублирующему полупрозрачному отображению элемента, показывающее где он упадёт, если отпустить кнопку мыши). В нашем примере "sortable-chosen" не пригодится. -->
 <!-- 8.1 При перетаскивании элемента мы хотим слегка наклонять вбок элемент задачи наподобие как в оригинальном «Trello». ↑ -->
 <!-- 8.3 Теперь займёмся стилизацией "призрака", для достижения эффекта, как у оригинального «Trello» лучше всего подойдёт псевдоэлемент. -->
+<!-- Go to [components\NewTask.vue] -->
 <style>
 @import "tailwindcss";
 
