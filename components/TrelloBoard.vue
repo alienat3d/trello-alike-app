@@ -68,7 +68,14 @@ const isAltPressed = useKeyModifier("Alt");
             <!-- 8.2 Однако, чтобы применить стили нам нужно добавить элементу задач доп. div-обёртку. -->
             <template #item="{ element: task }: { element: Task }">
               <div>
-                <TrelloBoardTask :task="task" />
+                <!-- 10.5 Теперь осталось лишь добавить слушатель на это кастомное событие "delete" и удалять задачу из списка по нажатию кнопки "Backspace". А сделаем мы это с помощью метода "filter", присвоив column.tasks все задачи, кроме выбранной. -->
+                <!-- Go to [components\TrelloBoardTask.vue] -->
+                <TrelloBoardTask
+                  :task="task"
+                  @delete="
+                    column.tasks = column.tasks.filter((t) => t.id !== $event)
+                  "
+                />
               </div>
             </template>
           </draggable>
@@ -82,25 +89,3 @@ const isAltPressed = useKeyModifier("Alt");
     </draggable>
   </div>
 </template>
-
-<!-- * 8.0 В оригинальном «Trello» при перетаскивании элементы задач наклоняются в одну сторону, мы можем сделать тоже самое. «SoratableJS» даёт нам три класса для разных состояний: "sortable-chosen" (когда мы только начали перетаскивать элемент кликнув на нём и удерживая кнопку мыши.), "sortable-drag" (когда мы начали движение удерживая элемент) и "sortable-ghost" (применяется к дублирующему полупрозрачному отображению элемента, показывающее где он упадёт, если отпустить кнопку мыши). В нашем примере "sortable-chosen" не пригодится. -->
-<!-- 8.1 При перетаскивании элемента мы хотим слегка наклонять вбок элемент задачи наподобие как в оригинальном «Trello». ↑ -->
-<!-- 8.3 Теперь займёмся стилизацией "призрака", для достижения эффекта, как у оригинального «Trello» лучше всего подойдёт псевдоэлемент. -->
-<!-- Go to [components\NewTask.vue] -->
-<style>
-@import "tailwindcss";
-
-/* .sortable-chosen {} */
-
-.sortable-drag .task {
-  transform: rotate(4deg);
-}
-
-.sortable-ghost .task {
-  @apply relative;
-}
-.sortable-ghost .task::after {
-  content: "";
-  @apply absolute top-0 right-0 bottom-0 left-0 rounded bg-slate-300;
-}
-</style>
