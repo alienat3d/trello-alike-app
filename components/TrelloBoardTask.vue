@@ -16,11 +16,17 @@ onKeyStroke("Backspace", (e) => {
 });
 </script>
 
+<!-- 12.2 Чтобы избавиться от ошибки, связанной с датой создания задачи, после подключения функции сохранения в Local Storage поменяем строчку ':title="task.createdAt.toLocaleDateString()' на ':title="new Date(task.createdAt).toLocaleDateString()"' -->
+<!-- ? 12.3 Как опция может быть добавлено время в другом формате с помощью либы «date-fns»: 
+
+import {format} from 'date-fns'
+
+:title="format(new Date(task.createdAt), 'dd/MM/yyyy')" (иной формат времени) -->
 <template>
   <div
     @focus="focused = true"
     @blur="focused = false"
-    :title="task.createdAt.toLocaleDateString()"
+    :title="new Date(task.createdAt).toLocaleDateString()"
     class="task mb-2 max-w-[250px] rounded bg-white p-2 shadow-sm"
     tabindex="0"
   >

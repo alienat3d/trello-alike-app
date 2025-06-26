@@ -5,7 +5,10 @@ import draggable from "vuedraggable";
 import TrelloBoardTask from "./TrelloBoardTask.vue";
 import NewTask from "./NewTask.vue";
 
-const columns = ref<Column[]>([
+// * 12.0 Теперь сделаем, чтобы все наши введённые данные не исчезали после закрытия окна или его обновления. С эти поможет Local Storage, и для удобной работы с ним мы используем VueUse. Для начала поменяем ref на "useLocalStorage". И первым аргументом он теперь примет название, под которым он сохранит данные в Local Storage.
+
+// const columns = ref<Column[]>([
+const columns = useLocalStorage<Column[]>("trelloBoard", [
   {
     title: "Backlog",
     id: nanoid(),
@@ -32,6 +35,10 @@ const columns = ref<Column[]>([
   { title: "QA", id: nanoid(), tasks: [] },
   { title: "Complete", id: nanoid(), tasks: [] },
 ]);
+// ? 12.1 Однако, если мы хотим синхронизировать с сервером, то мы будем использовать что-то подобное:
+// watch(columns, () => { AJAX request... }, { deep: true, });
+
+// Go to [components\TrelloBoardTask.vue]
 
 const isAltPressed = useKeyModifier("Alt");
 
