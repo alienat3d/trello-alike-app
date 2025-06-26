@@ -14,4 +14,4 @@
 - [Making the component client side only](https://nuxt.com/docs/api/components/client-only)
 - [Sortable.js: Group Option](https://github.com/SortableJS/Sortable#group-option)
 - [VueUse Docs: useKeyModifier](https://vueuse.org/core/usekeymodifier/#usekeymodifier)
-- []()
+- [Vue Draggable Examples](https://sortablejs.github.io/Vue.Draggable/#/simple)
